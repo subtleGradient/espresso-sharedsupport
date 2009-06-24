@@ -1,77 +1,68 @@
 <?xml version="1.0"?>
-<syntax name="com.macrabbit.Espresso.Syntax.Markup.HTML">
+<syntax name="text.html.basic">
 	<zones>
-		<zone name="metadata.processing.processing-instruction.xml">
+		<zone name="tag.preprocessor.xml.html">
 			<starts-with>
 				<expression>(&lt;\?)(xml)</expression>
-				<capture number="0" name="metadata.processing.processing-instruction.xml.begin"/>
-				<capture number="1" name="delimiter.balanced.processing-instruction.begin"/>
-				<capture number="2" name="processing-instruction.name"/>
+				<capture number="1" name="punctuation.definition.begin"/>
+				<capture number="2" name="entity.name"/>
 			</starts-with>
 			<ends-with>
 				<expression>(\?>)</expression>
-				<capture number="0" name="metadata.processing.processing-instruction.xml.end"/>
-				<capture number="1" name="delimiter.balanced.processing-instruction.end"/>
+				<capture number="1" name="punctuation.definition.end"/>
 			</ends-with>
 			<subzones>
 				<include collection="tag-attributes"/>
 			</subzones>
 		</zone>
-		<zone name="metadata.comment.block">
+		<zone name="comment.block.html">
 			<starts-with>
 				<expression>&lt;!--</expression>
-				<capture number="0" name="delimiter.balanced.comment.begin"/>
+				<capture number="0" name="punctuation.definition.begin"/>
 			</starts-with>
 			<ends-with>
 				<expression>--></expression>
-				<capture number="0" name="delimiter.balanced.comment.end"/>
+				<capture number="0" name="punctuation.definition.end"/>
 			</ends-with>
 			<subzones>
-				<zone name="invalid.partial-comment-end">
+				<zone name="invalid.illegal.bad-comments-or-CDATA.html">
 					<expression>--</expression>
-				</zone>
-				<zone name="invalid.overlong-comment-end">
-					<expression>---></expression>
 				</zone>
 			</subzones>
 		</zone>
-		<zone name="metadata.processing.processing-instruction.doctype">
+		<zone name="tag.doctype.html">
 			<starts-with>
 				<expression>(&lt;!)(DOCTYPE)</expression>
-				<capture number="0" name="metadata.processing.processing-instruction.doctype.begin"/>
-				<capture number="1" name="delimiter.balanced.processing-instruction.begin"/>
-				<capture number="2" name="processing-instruction.name"/>
+				<capture number="1" name="punctuation.definition.begin"/>
+				<capture number="2" name="entity.name"/>
 			</starts-with>
 			<ends-with>
-				<expression>(>)</expression>
-				<capture number="0" name="metadata.processing.processing-instruction.doctype.end"/>
-				<capture number="1" name="delimiter.balanced.processing.instruction.end"/>
+				<expression>></expression>
+				<capture number="0" name="punctuation.definition.end"/>
 			</ends-with>
 		</zone>
-		<zone name="metadata.processing.tag.self-closing.cdata">
+		<zone name="tag.self-closing.cdata.html">
 			<starts-with>
-				<expression>(&lt;)!\[CDATA\[</expression>
-				<capture number="0" name="self-closing.tag.begin"/>
-				<capture number="1" name="delimiter.punctuation.definition.tag.begin"/>
+				<expression>&lt;!\[CDATA\[</expression>
+				<capture number="0" name="punctuation.definition"/>
 			</starts-with>
 			<ends-with>
-				<expression>\]\](>)</expression>
-				<capture number="0" name="self-closing.tag.end"/>
-				<capture number="1" name="delimiter.punctuation.definition.tag.end"/>
+				<expression>\]\]></expression>
+				<capture number="0" name="punctuation.definition"/>
 			</ends-with>
 		</zone>
         
         <!-- Embedded styles -->
-		<zone name="metadata.processing.style.embedded">
+		<zone name="embedded-style.html">
 			<starts-with>
 				<expression>(?=&lt;(?i:style))</expression>
 			</starts-with>
 			<ends-with>
 				<expression>(&lt;/)((?i:style))(>)</expression>
 				<capture number="0" name="tag.close.style.html"/>
-				<capture number="1" name="delimiter.punctuation.definition.tag.begin"/>
+				<capture number="1" name="punctuation.definition"/>
 				<capture number="2" name="entity.name"/>
-				<capture number="3" name="delimiter.punctuation.definition.tag.begin"/>
+				<capture number="3" name="punctuation.definition"/>
 			</ends-with>
 			<subzones>
 				<zone name="tag.open.style.html">
