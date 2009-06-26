@@ -9,7 +9,59 @@
 		</subrecipes>
 	</recipe>
 
-	<recipe name="block.js.hidden">
+	<recipe name="object.object.js">
+		<start-selector>object.key.js:has-child(label:capture(name)):capture(itemizer-firstused) + curly.brace.open.js</start-selector>
+		<end-selector>curly.brace.close.js</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+
+
+<!--
+	<recipe name="object.value.js">
+		<start-selector>object.key.js:has-child(label:capture(name)):capture(itemizer-firstused) + :not(curly.open)</start-selector>
+		<end-selector>*</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+-->
+
+	<recipe name="variable.class.object.js">
+		<start-selector>variable:capture(name) + assignment + class:capture(itemizer-firstused) + round + curly.brace.open.js</start-selector>
+		<end-selector>curly.brace.close.js</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+
+	<recipe name="variable.class.object.js">
+		<start-selector>variable:capture(name) assignment + class:capture(itemizer-firstused) + round + curly.brace.open.js</start-selector>
+		<end-selector>curly.brace.close.js</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+
+	<recipe name="property.class.object.js">
+		<start-selector>property:capture(name) + assignment + class:capture(itemizer-firstused) + round + curly.brace.open.js</start-selector>
+		<end-selector>curly.brace.close.js</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+
+	<recipe name="class.object.js">
+		<start-selector>class:has-child(name:capture(name)):capture(itemizer-firstused) + round + curly.brace.open.js</start-selector>
+		<end-selector>curly.brace.close.js</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+
+
+	<recipe name="block.js">
 		<class>ESCodeBlockItem</class>
 		<start-selector>curly.brace.open.js</start-selector>
 		<end-selector>curly.brace.close.js</end-selector>
@@ -17,5 +69,6 @@
 			<include-root-recipes/>
 		</subrecipes>
 	</recipe>
+
 	
 </itemizer>

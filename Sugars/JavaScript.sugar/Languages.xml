@@ -8,6 +8,9 @@
 		<name>JavaScript</name>
 		<detectors>
 			<extension>js</extension>
+			<extension>jsx</extension>
+			<extension>json</extension>
+			<extension>jsonp</extension>
 		</detectors>
 		
 	</language>
